@@ -1,7 +1,6 @@
 package org.example;
 
 import java.util.Comparator;
-import org.example.MyList;
 import org.example.expections.MyArrayListOutOfBoundsException;
 import org.example.utils.QuickSort;
 
@@ -87,7 +86,7 @@ public class MyArrayList<T> implements MyList<T> {
   }
 
   /**
-   * increases capacity if size is greater than or equal to capacity
+   * increases capacity if size is greater than or equal to capacity.
    */
   private void growCapacity() {
     if (size < elementData.length) {
@@ -146,7 +145,7 @@ public class MyArrayList<T> implements MyList<T> {
   }
 
   /**
-   * Sorts this MyArrayList according to the order induced by the specified comparator
+   * Sorts this MyArrayList according to the order induced by the specified comparator.
    *
    * @param comparator specified comparator
    */
@@ -207,7 +206,23 @@ public class MyArrayList<T> implements MyList<T> {
   }
 
   /**
-   * Returns the String representation of the {@code MyArrayList}
+   * Replaces the element at the specified position in this list with the specified element.
+   *
+   * @param index   index of the element to replace
+   * @param element element to be stored at the specified position
+   * @return the element previously at the specified position
+   * @throws MyArrayListOutOfBoundsException if index is greater than or equal to size
+   */
+  @Override
+  public T set(int index, T element) {
+    rangeCheck(index);
+    T oldValue = elementData(index);
+    elementData[index] = element;
+    return oldValue;
+  }
+
+  /**
+   * Returns the String representation of the {@code MyArrayList}.
    *
    * @return the String representation of the {@code MyArrayList}
    */

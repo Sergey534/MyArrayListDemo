@@ -4,6 +4,7 @@ import static org.testng.Assert.assertEquals;
 
 import java.lang.reflect.Field;
 import org.example.MyArrayList;
+import org.example.utils.CollectionsUtil;
 import org.testng.annotations.Test;
 import testConstants.TestConstants;
 import utils.MyLogger;
@@ -149,4 +150,36 @@ public class MyArrayListTest {
     }
     MyLogger.info("testTrimToSize method completed successfully.");
   }
+
+  /**
+   * Test method to verify the behavior of the set method in MyArrayList. This method tests setting the element at index 2.
+   */
+  @Test
+  public void testSet() {
+    MyLogger.info("Starting testSet method...");
+    MyArrayList<String> list = new MyArrayList<>();
+    list.add("A");
+    list.add("B");
+    list.add("C");
+    list.add("D");
+    list.set(2, "F");
+    assertEquals(list.get(2), TestConstants.EXPECTED_SET_RESULT, "elements is not equals");
+    MyLogger.info("testSet method completed successfully.");
+  }
+
+  /**
+   * Test method to verify the behavior of the sort method in MyArrayList. This method tests Integer sorting .
+   */
+  @Test
+  public void testComparableSort() {
+    MyLogger.info("Starting testComparableSort method...");
+    MyArrayList<Integer> list = new MyArrayList<>();
+    for (int i = 4; i >= 1; i--) {
+      list.add(i);
+    }
+    CollectionsUtil.sort(list);
+    assertEquals(list.toString(), TestConstants.EXPECTED_COMPARABLE_SORT_RESULT, "elements is not equals");
+    MyLogger.info("testComparableSort method completed successfully.");
+  }
+
 }

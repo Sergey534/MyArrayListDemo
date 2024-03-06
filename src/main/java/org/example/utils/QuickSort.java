@@ -2,6 +2,9 @@ package org.example.utils;
 
 import java.util.Comparator;
 
+/**
+ * This class consists exclusively of static methods that sorts the specified array of objects.
+ */
 public class QuickSort<T> {
 
   /**
@@ -9,51 +12,39 @@ public class QuickSort<T> {
    * range to be sorted extends from index {@code low}, inclusive, to index {@code high}, inclusive.
    *
    * @param array      the array to be sorted
-   * @param low        the index of the first element (inclusive) to be sorted
-   * @param high       the index of the last element (inclusive) to be sorted
+   * @param left       the index of the first element (inclusive) to be sorted
+   * @param right      the index of the last element (inclusive) to be sorted
    * @param comparator the comparator to determine the order of the array.
    */
-  public static <T> void quickSort(T[] array, int low, int high, Comparator<? super T> comparator) {
-    if (low < high) {
-      int pivot = partition(array, low, high, comparator);
-      quickSort(array, low, pivot - 1, comparator);
-      quickSort(array, pivot + 1, high, comparator);
-    }
-  }
+  public static <T> void quickSort(T[] array, int left, int right, Comparator<? super T> comparator) {
+    int i, j;
+    T x, y;
+    i = left;
+    j = right;
+    x = array[((left + right) / 2)];
 
-  /**
-   * Chooses a pivot element, partitions the array around the pivot, and returns the index of the pivot after partitioning.
-   *
-   * @param array      the array to be sorted
-   * @param low        the index of the first element (inclusive) to be sorted
-   * @param high       the index of the last element (inclusive) to be sorted
-   * @param comparator the comparator to determine the order of the array.
-   */
-  private static <T> int partition(T[] array, int low, int high, Comparator<? super T> comparator) {
-    T pivot = array[high];
-    int i = low - 1;
+    do {
 
-    for (int j = low; j < high; j++) {
-      if (comparator.compare(array[j], pivot) < 0) {
+      while ((comparator.compare(array[i], x) < 0) && (i < right)) {
         i++;
-        swap(array, i, j);
       }
+      while ((comparator.compare(array[j], x) > 0) && (j > left)) {
+        j--;
+      }
+      if (i <= j) {
+        y = array[i];
+        array[i] = array[j];
+        array[j] = y;
+        i++;
+        j--;
+      }
+    } while (i <= j);
+    if (left < j) {
+      quickSort(array, left, j, comparator);
     }
-    swap(array, i + 1, high);
-    return i + 1;
-  }
-
-  /**
-   * Swaps two elements in the array.
-   *
-   * @param array the array in which elements will be swapped
-   * @param i     the index of the first element to swap
-   * @param j     the index of the second element to swap
-   */
-  private static <T> void swap(T[] array, int i, int j) {
-    T temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
+    if (i < right) {
+      quickSort(array, i, right, comparator);
+    }
   }
 
 }

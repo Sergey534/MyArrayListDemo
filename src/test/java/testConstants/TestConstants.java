@@ -13,4 +13,6 @@ public class TestConstants {
   public static final String EXPECTED_SORT_RESULT = "[A, B, C, D]";
   public static final int EXPECTED_SIZE_RESULT = 5;
   public static final int EXPECTED_TrimToSize_RESULT = 3;
+  public static final String EXPECTED_SET_RESULT = "F";
+  public static final String EXPECTED_COMPARABLE_SORT_RESULT = "[1, 2, 3, 4]";
 }

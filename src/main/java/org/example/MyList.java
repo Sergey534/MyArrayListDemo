@@ -51,7 +51,7 @@ public interface MyList<T> {
   void clear();
 
   /**
-   * Sorts this list according to the order induced by the specified comparator
+   * Sorts this list according to the order induced by the specified comparator.
    *
    * @param comparator specified comparator
    */
@@ -64,4 +64,13 @@ public interface MyList<T> {
    * @return the element at the specified position in this list
    */
   T get(int index);
+
+  /**
+   * Replaces the element at the specified position in this list with the specified element.
+   *
+   * @param index   index of the element to replace
+   * @param element element to be stored at the specified position
+   * @return the element previously at the specified position
+   */
+  T set(int index, T element);
 }
